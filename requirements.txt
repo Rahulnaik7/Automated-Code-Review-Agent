@@ -1,0 +1,22 @@
+PyYAML>=6.0
+torch
+torchaudio
+torchvision
+moviepy
+face_alignment
+beartype
+taylor_series_linear_attention
+huggingface_hub
+einops
+vector_quantize_pytorch
+spaces
+tf-keras
+# retina-face  # Removed due to dependency conflicts with Python 3.14
+safetensors
+soundfile
+librosa
+python-speech-features==0.6
+scipy>=1.13.0
+opencv-python==4.11.0.86
+sentencepiece==0.1.96
+editdistance==0.6.0

@@ -1,0 +1,1 @@
+"""Lightweight demo package init."""

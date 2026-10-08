@@ -1,0 +1,10 @@
+{"id": "ex-001", "tool": "lint", "args": {"path": "src/module_a.py"}}
+{"id": "ex-002", "tool": "bandit", "args": {"path": "src/module_b.py"}}
+{"id": "ex-003", "tool": "typecheck", "args": {"path": "src/module_c.py"}}
+{"id": "ex-004", "tool": "dependency_scan", "args": {"package": "requests"}}
+{"id": "ex-005", "tool": "lint", "args": {"path": "src/module_d.py"}}
+{"id": "ex-006", "tool": "bandit", "args": {"path": "src/module_e.py"}}
+{"id": "ex-007", "tool": "typecheck", "args": {"path": "src/module_f.py"}}
+{"id": "ex-008", "tool": "dependency_scan", "args": {"package": "numpy"}}
+{"id": "ex-009", "tool": "lint", "args": {"path": "src/module_g.py"}}
+{"id": "ex-010", "tool": "bandit", "args": {"path": "src/module_h.py"}}
