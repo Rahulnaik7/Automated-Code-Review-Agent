@@ -1,0 +1,33 @@
+# Automated Code Review Agent — runtime configuration
+
+llm:
+  # "mock"  -> MockQwenClient, deterministic & offline (default; used by demo/tests/benchmark)
+  # "qwen"  -> QwenCoderClient, talks to a real Qwen2.5-Coder OpenAI-compatible endpoint
+  provider: mock
+  model: Qwen/Qwen2.5-Coder-7B-Instruct
+  base_url: http://localhost:11434/v1   # e.g. Ollama's OpenAI-compatible endpoint
+  temperature: 0.1
+  mock_hallucination_rate: 0.22
+  mock_miss_rate: 0.18
+
+routing:
+  # Static findings at or above this severity always get a deep LLM
+  # review pass (asking for an explanation + suggested fix), regardless
+  # of whether Bandit/AST cross-validation already verified them.
+  deep_review_severity_floor: medium
+
+  # Unverified (single-source) findings below this confidence are sent to
+  # the LLM for re-confirmation before being surfaced; at/above it they
+  # are reported directly without spending an LLM call.
+  auto_confirm_confidence: high
+
+  # Cap the number of findings sent to the LLM per file, to bound cost.
+  max_llm_findings_per_file: 8
+
+analysis:
+  run_bandit: true
+  run_ast_checks: true
+  cross_validate: true
+
+output:
+  min_reported_severity: low

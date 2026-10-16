@@ -1,0 +1,29 @@
+diff --git a/app/reports.py b/app/reports.py
+new file mode 100644
+index 0000000..a1b2c3d
+--- /dev/null
++++ b/app/reports.py
+@@ -0,0 +1,24 @@
++import os
++import subprocess
++import hashlib
++
++
++def export_users_csv(user_id, cursor, out_dir):
++    """Export a user's rows to CSV and back them up."""
++    query = "SELECT * FROM users WHERE id = " + user_id
++    cursor.execute(query)
++    rows = cursor.fetchall()
++
++    api_key = "sk-live-4f8c9a2b7e1d0912abcdef"
++
++    csv_path = os.path.join(out_dir, f"user_{user_id}.csv")
++    with open(csv_path, "w") as f:
++        for row in rows:
++            f.write(",".join(str(c) for c in row) + "\n")
++
++    backup_cmd = "tar -czf " + out_dir + "_backup.tar.gz " + out_dir
++    subprocess.run(backup_cmd, shell=True)
++
++    checksum = hashlib.md5(open(csv_path, "rb").read()).hexdigest()
++    return {"path": csv_path, "checksum": checksum, "api_key": api_key}
